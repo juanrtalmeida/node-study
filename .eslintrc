@@ -10,10 +10,18 @@
 		"plugin:@typescript-eslint/recommended",
 		"plugin:prettier/recommended",
 		"eslint:recommended",
+		"plugin:import/typescript",
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended"
 	],
+	"import/extensions": [".js", ".jsx", ".ts", ".tsx"],
 	"rules": {
+		"import/no-extraneous-dependencies": [
+			"error",
+			{ "devDependencies": false, "optionalDependencies": false, "peerDependencies": false }
+		],
+		"import/no-unresolved": ["off", { "caseSensitive": false }],
+		"import/prefer-default-export": "off",
 		"indent": ["error", "tab"],
 		"semi": ["error", "never"],
 		"linebreak-style": ["error", "windows"],

@@ -1,21 +1,36 @@
 import express, { json } from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
+import { repo } from './Repo/repo'
 
 dotenv.config()
+
 const app = express()
 
 app.use(json(), cors())
 
-app.post('/api/test', (req, res) => {
-	console.log(req.body)
-	res.status(200).json({ message: 'HAPPY CODING' })
-})
+async function main() {
+	app.post('/api/test', (req, res) => {
+		if (Object.values(req.body).length > 2) {
+			res.status(400).json({ message: 'Too many arguments' })
+			return
+		}
+		res.status(200).json({ message: `Sum is ${req.body.number_two + req.body.number_one}` })
+	})
 
-const port = process.env.PORT
+	app.get('/random', (req, res) => {
+		res.status(403).json({ message: 'fasd' })
+	})
 
-const host = 'http://localhost'
+	const port = process.env.PORT
 
-app.listen(port, () => {
-	console.log(`\nServer listening on ${host}:${port}\n`)
+	const host = 'http://localhost'
+
+	app.listen(port, () => {
+		console.log(`\nServer listening on ${host}:${port}\n`)
+	})
+}
+
+main().finally(async () => {
+	await repo().$disconnect()
 })

@@ -1,5 +1,5 @@
-describe('get', () => {
-	it('should get a value from an object', () => {
+describe('Testes dos gets da API', () => {
+	it('should return true', () => {
 		expect(true).toBe(true)
 	})
 })

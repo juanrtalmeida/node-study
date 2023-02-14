@@ -1,19 +1,22 @@
 {
-  "compilerOptions": {
-    "target": "es2016",
-    "module": "ESNext",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "baseUrl": "./",
-    "paths": {
-      "@*": ["src/*"],
-      "dotenv": ["node_modules/dotenv/lib/main.d.ts"]
-    }
-  },
-  "ts-node": {
-    "swc": true,
-    "esm": true
-  }
+	"compilerOptions": {
+		"lib": ["ES2022"], // ES2020 in earlier versions
+		"module": "ES2022", //ESNext
+		"moduleResolution": "Node",
+		"target": "ES2022", // ES2020 in earlier versions
+		"esModuleInterop": true,
+		"baseUrl": "./",
+		"paths": {
+			"@*": ["src/*"],
+			"dotenv": ["node_modules/dotenv/lib/main.d.ts"]
+		}
+	},
+	"ts-node": {
+		"swc": true,
+		"esm": true,
+		"files": true,
+		"experimentalSpecifierResolution": "node"
+	},
+	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules"]
 }
