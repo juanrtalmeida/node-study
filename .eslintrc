@@ -14,15 +14,24 @@
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended"
 	],
-	"import/extensions": [".js", ".jsx", ".ts", ".tsx"],
 	"rules": {
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+				"js": "never",
+				"jsx": "never",
+				"ts": "never",
+				"tsx": "never"
+			}
+		],
 		"import/no-extraneous-dependencies": [
 			"error",
 			{ "devDependencies": false, "optionalDependencies": false, "peerDependencies": false }
 		],
 		"import/no-unresolved": ["off", { "caseSensitive": false }],
 		"import/prefer-default-export": "off",
-		"indent": ["error", "tab"],
+		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"semi": ["error", "never"],
 		"linebreak-style": ["error", "windows"],
 		"no-unused-vars": "error",

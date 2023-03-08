@@ -2,7 +2,7 @@
 	"main": "index.ts",
 	"type": "module",
 	"scripts": {
-		"start": "nodemon --exec ts-node-esm --files src/index.ts -e ts",
+		"start": "cross-env NODE_ENV=dev nodemon --exec ts-node-esm --files src/index.ts -e ts",
 		"build": "swc src -d dist",
 		"lint": "eslint . --ext .ts",
 		"test": "jest --watchAll --no-cache --forceExit"
@@ -24,6 +24,8 @@
 		"@types/node": "^18.11.18",
 		"@typescript-eslint/eslint-plugin": "^5.49.0",
 		"@typescript-eslint/parser": "^5.49.0",
+		"chalk": "^5.2.0",
+		"cross-env": "^7.0.3",
 		"eslint": "^8.32.0",
 		"eslint-config-airbnb-base": "^15.0.0",
 		"eslint-config-prettier": "^8.6.0",
@@ -35,6 +37,7 @@
 		"prisma": "^4.10.1",
 		"ts-jest": "^29.0.5",
 		"ts-node": "^10.9.1",
+		"tsconfig-paths": "^4.1.2",
 		"typescript": "^4.9.4"
 	}
 }
