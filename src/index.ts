@@ -2,10 +2,8 @@ import express, { json } from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import chalk from 'chalk'
-import { loginRoutes } from '@src/routes/login'
-import { repo } from './Repo/repo'
+import { repo } from '@src/Repo/repo'
 import { RequestType, TypedResponse } from './types/endpoint'
-import { registerRoutes } from './routes/register'
 
 function colorizeMethod(method: string) {
 	switch (method) {
@@ -28,8 +26,6 @@ export const app = express()
 app.use(json(), cors())
 
 async function main() {
-	loginRoutes(app)
-	registerRoutes(app)
 	app.post(
 		'/api/test',
 		(

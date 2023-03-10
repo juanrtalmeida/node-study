@@ -3,20 +3,23 @@
 		"parser": {
 			"syntax": "typescript",
 			"tsx": false,
-			"decorators": true,
-			"dynamicImport": true,
-			"isModule": true,
-			"exportDefaultFrom": false
+			"dynamicImport": false,
+			"exportDefaultFrom": false,
+			"experimental": {
+				"keepImportAssertions": true
+			}
 		},
-		"target": "es2020",
-		"baseUrl": "./",
+		"target": "esnext",
+		"baseUrl": "./dist",
 		"paths": {
-			"@src/*": ["dist/*"]
+			"@src/*": ["/*"]
 		}
 	},
 	"isModule": true,
 	"module": {
-		"type": "commonjs"
+		"type": "es6",
+		"ignoreDynamic": false
 	},
+	"sourceMaps": true,
 	"minify": true
 }
