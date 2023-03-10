@@ -1,10 +1,11 @@
-import express, { json, Request, Response } from 'express'
-import { Query, Send } from 'express-serve-static-core'
+import express, { json } from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import chalk from 'chalk'
+import { loginRoutes } from '@src/routes/login'
 import { repo } from './Repo/repo'
-import { loginRoutes } from './routes/login'
+import { RequestType, TypedResponse } from './types/endpoint'
+import { registerRoutes } from './routes/register'
 
 function colorizeMethod(method: string) {
 	switch (method) {
@@ -26,21 +27,9 @@ export const app = express()
 
 app.use(json(), cors())
 
-export interface RequestTypeWithQuery<T, U extends Query> extends Request {
-	body: T
-	query: U
-}
-
-export interface RequestType<T> extends Request {
-	body: T
-}
-
-export interface TypedResponse<ResBody> extends Response {
-	json: Send<ResBody, this>
-}
-
 async function main() {
 	loginRoutes(app)
+	registerRoutes(app)
 	app.post(
 		'/api/test',
 		(

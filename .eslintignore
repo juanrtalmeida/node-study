@@ -1,5 +1,5 @@
 node_modules
-dist
+/dist
 .env
 jest.config.js
 package.json

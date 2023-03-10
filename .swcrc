@@ -1,16 +1,22 @@
 {
-  "jsc": {
-    "parser": {
-      "syntax": "typescript",
-      "tsx": false,
-      "decorators": true,
-      "dynamicImport": true
-    },
-    "target": "es2016",
-    "baseUrl": "src"
-  },
-  "module": {
-    "type": "commonjs"
-  },
-  "minify": false
+	"jsc": {
+		"parser": {
+			"syntax": "typescript",
+			"tsx": false,
+			"decorators": true,
+			"dynamicImport": true,
+			"isModule": true,
+			"exportDefaultFrom": false
+		},
+		"target": "es2020",
+		"baseUrl": "./",
+		"paths": {
+			"@src/*": ["dist/*"]
+		}
+	},
+	"isModule": true,
+	"module": {
+		"type": "commonjs"
+	},
+	"minify": true
 }
