@@ -2,8 +2,10 @@ import express, { json } from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import chalk from 'chalk'
-import { repo } from '@src/Repo/repo'
+import { repo } from '@src/repo/repo'
+import helmet from 'helmet'
 import { RequestType, TypedResponse } from './types/endpoint'
+import { loginRoutes } from './routes/login'
 
 function colorizeMethod(method: string) {
 	switch (method) {
@@ -21,11 +23,13 @@ function colorizeMethod(method: string) {
 }
 
 dotenv.config()
-export const app = express()
+const app = express()
 
-app.use(json(), cors())
+// important middlewares
+app.use(json(), cors(), helmet())
 
 async function main() {
+	loginRoutes(app)
 	app.post(
 		'/api/test',
 		(
@@ -41,21 +45,23 @@ async function main() {
 	)
 
 	app.get('/random', (req, res) => {
-		res.status(403).json({ message: 'fasd' })
+		res.status(200).json({ message: 'Random' })
 	})
 
-	const port = process.env.PORT
+	const port = Number(process.env.PORT) || 3000
 
 	const host = 'http://localhost'
 
-	app.listen(port, () => {
+	app.listen(port, '0.0.0.0', () => {
 		console.log(`\nServer listening on ${host}:${port}`)
-		console.log('Routes: \n')
 		if (process.env.NODE_ENV === 'dev') {
+			console.log('Routes: \n')
 			// eslint-disable-next-line no-underscore-dangle
 			app._router.stack
-				.filter((r: any) => r.route)
-				.forEach((r: any) => console.log(colorizeMethod(r.route.stack[0].method.toUpperCase()), r.route.path))
+				.filter((r: { route: unknown }) => r.route)
+				.forEach((r: { route: { stack: { method: string }[]; path: string } }) =>
+					console.log(colorizeMethod(r.route.stack[0].method.toUpperCase()), r.route.path)
+				)
 		}
 	})
 }
