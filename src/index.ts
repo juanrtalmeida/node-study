@@ -5,7 +5,6 @@ import chalk from 'chalk'
 import { repo } from '@src/repo/repo'
 import helmet from 'helmet'
 import { RequestType, TypedResponse } from './types/endpoint'
-import { loginRoutes } from './routes/login'
 
 function colorizeMethod(method: string) {
 	switch (method) {
@@ -29,7 +28,6 @@ const app = express()
 app.use(json(), cors(), helmet())
 
 async function main() {
-	loginRoutes(app)
 	app.post(
 		'/api/test',
 		(
