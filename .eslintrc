@@ -4,7 +4,7 @@
 	},
 	"root": true,
 	"parser": "@typescript-eslint/parser",
-	"plugins": ["@typescript-eslint", "prettier"],
+	"plugins": ["@typescript-eslint", "prettier", "unused-imports"],
 	"extends": [
 		"airbnb-base",
 		"plugin:@typescript-eslint/recommended",
@@ -25,6 +25,7 @@
 				"tsx": "never"
 			}
 		],
+		"@typescript-eslint/no-unused-vars": "off",
 		"import/no-extraneous-dependencies": [
 			"error",
 			{ "devDependencies": false, "optionalDependencies": false, "peerDependencies": false }
@@ -34,17 +35,28 @@
 		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"semi": ["error", "never"],
 		"linebreak-style": ["error", "windows"],
-		"no-unused-vars": "error",
+		"no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
 		"no-unreachable": "error",
 		"no-use-before-define": "error",
 		"camelcase": "error",
 		"dot-notation": "error",
 		"no-empty": "error",
+		"no-underscore-dangle": "off",
 		"no-multi-spaces": "error",
 		"space-in-parens": "error",
 		"space-infix-ops": "error",
 		"object-curly-spacing": ["error", "always"],
 		"sort-keys": ["warn", "asc", { "natural": true, "caseSensitive": true }],
-		"no-console": "off"
+		"no-console": "off",
+		"unused-imports/no-unused-imports": "error",
+		"unused-imports/no-unused-vars": [
+			"warn",
+			{
+				"vars": "all",
+				"varsIgnorePattern": "^_",
+				"args": "after-used",
+				"argsIgnorePattern": "^_"
+			}
+		]
 	}
 }

@@ -12,6 +12,7 @@ model User {
   email           String            @unique
   name            String?
   password        String
+  salt            String
   RoundVote       RoundVote[]
   RoundSuggestion RoundSuggestion[]
   PlaceSuggestion PlaceSuggestion[]

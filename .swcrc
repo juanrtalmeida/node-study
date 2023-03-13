@@ -7,19 +7,19 @@
 			"exportDefaultFrom": false,
 			"experimental": {
 				"keepImportAssertions": true
-			}
+			},
+			"topLevelAwait": true
 		},
-		"target": "esnext",
-		"baseUrl": "./dist",
+		"target": "es2022",
+		"baseUrl": "./",
 		"paths": {
-			"@src/*": ["/*"]
+			"@src/*": ["./dist/*"]
 		}
 	},
 	"isModule": true,
 	"module": {
-		"type": "es6",
+		"type": "nodenext",
 		"ignoreDynamic": false
 	},
-	"sourceMaps": true,
 	"minify": true
 }
