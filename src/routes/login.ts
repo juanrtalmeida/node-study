@@ -1,9 +1,9 @@
-import express from 'express'
+import express, { Request } from 'express'
 
 const router = express.Router()
 
-router.get('/random', (req, res) => {
-	res.status(200).json({ message: 'Random' })
+router.get('/random', async(req: Request<{}>, res) => {
+	throw new Error('random error')
 })
 
 
